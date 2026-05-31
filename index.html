@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafaul Hasan Emon — Computer Technician</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0b0b0b;
+    --bg-card: #141414;
+    --bg-card2: #1a1a1a;
+    --text: #f0ede8;
+    --text-muted: #888880;
+    --accent: #d4f54e;
+    --accent-dark: #a8c43a;
+    --border: #2a2a2a;
+    --border-light: #333;
+    --font-display: 'Spline Sans', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 3rem;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(11,11,11,0.92);
+    backdrop-filter: blur(12px);
+    border-color: var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 0.55rem 1.4rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+    background-image: url('./hero.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(11,11,11,0.55) 0%,
+      rgba(11,11,11,0.3) 40%,
+      rgba(11,11,11,0.85) 75%,
+      rgba(11,11,11,1) 100%
+    );
+    z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 8.5rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    margin-bottom: 2.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--text-muted);
+  }
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .hero-desc {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    max-width: 360px;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  .hero-stat {
+    text-align: right;
+  }
+  .hero-stat .num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+  }
+  .hero-stat .label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+  .hero-divider {
+    width: 1px;
+    height: 3rem;
+    background: var(--border);
+  }
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .hero-line {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 40vh;
+    background: linear-gradient(to bottom, transparent, var(--border));
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 3rem; }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* ── ABOUT ── */
+  .about { border-top: 1px solid var(--border); }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+  .about-right p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+  .about-right p strong { color: var(--text); font-weight: 600; }
+  .about-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border-light);
+    border-radius: 100px;
+    padding: 0.45rem 1rem;
+  }
+  .badge.accent {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ── SKILLS ── */
+  .skills { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .skills-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .skills h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .skill-cat {
+    background: var(--bg-card);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+  .skill-cat:hover { background: var(--bg-card2); }
+  .skill-cat-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .skill-cat h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+  }
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .skill-list li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .skill-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .skill-cat:hover img { transform: scale(1.05); }
+  .hardware-card:hover img,
+  .security-card:hover img { transform: none; }
+  .hw-img-default, .hw-img-hover,
+  .sec-img-default, .sec-img-hover {
+    will-change: opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience { border-top: 1px solid var(--border); }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .experience h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .exp-item:last-child { border-bottom: 1px solid var(--border); }
+  .exp-item:hover { background: var(--bg-card); padding-left: 1rem; padding-right: 1rem; margin: 0 -1rem; }
+  .exp-left {}
+  .exp-period {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .exp-company {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .exp-right {}
+  .exp-role {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.01em;
+  }
+  .exp-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+  .exp-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 0.3rem 0.7rem;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .certs { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .certs h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 3.5rem;
+  }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .cert-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: var(--border-light); }
+  .cert-card.active { border-color: var(--accent); }
+  .cert-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    width: fit-content;
+  }
+  .cert-status.done { color: var(--accent); background: rgba(212,245,78,0.1); }
+  .cert-status.progress { color: #60b4ff; background: rgba(96,180,255,0.1); }
+  .cert-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .cert-desc {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── CONTACT ── */
+  .contact { border-top: 1px solid var(--border); }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .contact h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+  }
+  .contact h2 em {
+    font-style: normal;
+    color: var(--text-muted);
+  }
+  .contact-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 1.8rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+    group: true;
+  }
+  .contact-link:hover {
+    border-color: var(--border-light);
+    background: var(--bg-card);
+  }
+  .contact-link-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .contact-link-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .contact-link-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .contact-link-arrow {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: transform 0.2s, color 0.2s;
+  }
+  .contact-link:hover .contact-link-arrow {
+    transform: translate(3px, -3px);
+    color: var(--accent);
+  }
+  .contact-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 3rem;
+  }
+  .availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .availability::before {
+    content: '';
+    display: block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero h1 { font-size: clamp(2.8rem, 12vw, 5rem); }
+    .hero-bottom { flex-direction: column; align-items: flex-start; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Emon<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-tag">Available for opportunities · Riyadh, Saudi Arabia</div>
+  <h1>Computer<br>Tech<em>nician</em></h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Hardware repair, networking &amp; technical support — 6+ years of hands-on experience keeping systems running at peak performance.</p>
+    <div class="hero-meta">
+      <div class="hero-stat">
+        <div class="num">6+</div>
+        <div class="label">Years Experience</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="num">CCNA</div>
+        <div class="label">In Progress</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="num">KSA</div>
+        <div class="label">Based In</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-line"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">About Me</div>
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <h2>The tech guy who gets it done.</h2>
+    </div>
+    <div class="about-right reveal reveal-delay-1">
+      <p>I'm <strong>Rafaul Hasan Emon</strong>, a computer technician with over <strong>6 years of hands-on experience</strong> diagnosing and repairing hardware, setting up networks, and providing reliable technical support to clients and businesses.</p>
+      <p>Currently based in <strong>Riyadh, Saudi Arabia</strong>, working at <strong>Sky Computer</strong>. I take pride in solving problems efficiently and making technology work seamlessly for the people who depend on it.</p>
+      <p>I'm actively expanding my expertise with a <strong>CCNA certification</strong> in progress, deepening my knowledge in networking infrastructure to take on more advanced roles.</p>
+      <div class="about-badges">
+        <span class="badge accent">CCNA In Progress</span>
+        <span class="badge">Hardware Repair</span>
+        <span class="badge">Networking</span>
+        <span class="badge">Tech Support</span>
+        <span class="badge">Riyadh, KSA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="skills-header reveal">
+    <div>
+      <div class="section-label">Technical Skills</div>
+      <h2>What I bring<br>to the table.</h2>
+    </div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-cat reveal hardware-card" style="padding: 0; overflow: hidden;">
+      <div style="width: 100%; height: 200px; overflow: hidden; position: relative;">
+        <img src="./hardware.webp" alt="Hardware" class="hw-img-default" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; position: absolute; inset: 0; transition: opacity 0.6s ease; opacity: 1;">
+        <img src="./hardware-hover.webp" alt="Hardware Hover" class="hw-img-hover" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; position: absolute; inset: 0; transition: opacity 0.6s ease; opacity: 0;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.95) 100%); z-index: 1;"></div>
+      </div>
+      <div style="padding: 1.5rem 2rem 2rem;">
+        <div class="skill-cat-icon">🖥️</div>
+        <h3>Hardware</h3>
+        <ul class="skill-list">
+          <li>PC / Laptop Assembly &amp; Repair</li>
+          <li>Motherboard Diagnosis</li>
+          <li>RAM, HDD, SSD Replacement</li>
+          <li>Power Supply Troubleshooting</li>
+          <li>Thermal Management &amp; Cooling</li>
+          <li>Printer &amp; Peripheral Repair</li>
+        </ul>
+      </div>
+    </div>
+    <div class="skill-cat reveal reveal-delay-1" style="padding: 0; overflow: hidden;">
+      <div style="width: 100%; height: 200px; overflow: hidden; position: relative;">
+        <img src="./networking.webp" alt="Networking" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform 0.5s ease;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.95) 100%);"></div>
+      </div>
+      <div style="padding: 1.5rem 2rem 2rem;">
+        <div class="skill-cat-icon">📡</div>
+        <h3>Networking</h3>
+        <ul class="skill-list">
+          <li>LAN / WAN Setup &amp; Config</li>
+          <li>Router &amp; Switch Configuration</li>
+          <li>IP Addressing &amp; Subnetting</li>
+          <li>Wi-Fi Installation &amp; Troubleshooting</li>
+          <li>Network Cable Management</li>
+          <li>CCNA (In Progress)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="skill-cat reveal reveal-delay-2" style="padding: 0; overflow: hidden;">
+      <div style="width: 100%; height: 200px; overflow: hidden; position: relative;">
+        <img src="./software.webp" alt="Software & OS" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform 0.5s ease;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.95) 100%);"></div>
+      </div>
+      <div style="padding: 1.5rem 2rem 2rem;">
+        <div class="skill-cat-icon">💿</div>
+        <h3>Software &amp; OS</h3>
+        <ul class="skill-list">
+          <li>Windows 7 / 10 / 11</li>
+          <li>OS Installation &amp; Configuration</li>
+          <li>Driver Installation &amp; Updates</li>
+          <li>Virus &amp; Malware Removal</li>
+          <li>Data Recovery &amp; Backup</li>
+          <li>Remote Desktop Support</li>
+        </ul>
+      </div>
+    </div>
+    <div class="skill-cat reveal" style="padding: 0; overflow: hidden;">
+      <div style="width: 100%; height: 200px; overflow: hidden; position: relative;">
+        <img src="./diagnostics.webp" alt="Diagnostics" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform 0.5s ease;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.95) 100%);"></div>
+      </div>
+      <div style="padding: 1.5rem 2rem 2rem;">
+        <div class="skill-cat-icon">🔧</div>
+        <h3>Diagnostics</h3>
+        <ul class="skill-list">
+          <li>System Performance Analysis</li>
+          <li>BIOS / UEFI Configuration</li>
+          <li>Hardware Stress Testing</li>
+          <li>Error Log Analysis</li>
+          <li>Component-Level Fault Finding</li>
+        </ul>
+      </div>
+    </div>
+    <div class="skill-cat reveal reveal-delay-1 security-card" style="padding: 0; overflow: hidden;">
+      <div style="width: 100%; height: 200px; overflow: hidden; position: relative;">
+        <img src="./security.webp" alt="Security" class="sec-img-default" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; position: absolute; inset: 0; transition: opacity 0.6s ease, transform 0.5s ease; opacity: 1;">
+        <img src="./security-hover.webp" alt="Security Hover" class="sec-img-hover" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; position: absolute; inset: 0; transition: opacity 0.6s ease, transform 0.5s ease; opacity: 0;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.95) 100%); z-index: 1;"></div>
+      </div>
+      <div style="padding: 1.5rem 2rem 2rem;">
+        <div class="skill-cat-icon">🛡️</div>
+        <h3>Security &amp; Safety</h3>
+        <ul class="skill-list">
+          <li>Antivirus Setup &amp; Management</li>
+          <li>Firewall Basic Configuration</li>
+          <li>Data Privacy Best Practices</li>
+          <li>Safe Network Practices</li>
+          <li>System Hardening</li>
+        </ul>
+      </div>
+    </div>
+    <div class="skill-cat reveal reveal-delay-2" style="padding: 0; overflow: hidden;">
+      <div style="width: 100%; height: 200px; overflow: hidden; position: relative; background: #1a1a1a;">
+        <img src="./softskills.webp" alt="Soft Skills" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; position: relative; z-index: 0; transition: transform 0.5s ease;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.95) 100%); z-index: 1;"></div>
+      </div>
+      <div style="padding: 1.5rem 2rem 2rem;">
+        <div class="skill-cat-icon">🤝</div>
+        <h3>Soft Skills</h3>
+        <ul class="skill-list">
+          <li>Client Communication</li>
+          <li>Problem-Solving Under Pressure</li>
+          <li>Attention to Detail</li>
+          <li>Time Management</li>
+          <li>Team Collaboration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="exp-header reveal">
+    <div>
+      <div class="section-label">Work Experience</div>
+      <h2>6+ years of<br>real-world tech.</h2>
+    </div>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-period">2024 — Present</div>
+        <div class="exp-company">Sky Computer</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Computer Technician</div>
+        <div class="exp-desc">Providing full-range hardware and software support to customers in Riyadh. Diagnosing and repairing desktops, laptops, and peripherals. Setting up networking equipment and offering technical consultation to clients.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Riyadh, KSA</span>
+          <span class="exp-tag">Hardware Repair</span>
+          <span class="exp-tag">Networking</span>
+          <span class="exp-tag">Customer Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-period">2018 — 2024</div>
+        <div class="exp-company">New Computer Solution</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Computer Technician</div>
+        <div class="exp-desc">Handled end-to-end technical support for walk-in and business clients. Responsibilities included PC assembly, OS installations, network configuration, and component-level hardware repairs. Built a strong reputation for reliable and fast turnaround.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Bangladesh</span>
+          <span class="exp-tag">PC Assembly</span>
+          <span class="exp-tag">OS Install</span>
+          <span class="exp-tag">Technical Support</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs" id="certs">
+  <div class="section-label">Certifications</div>
+  <h2 class="reveal">Always learning,<br>always growing.</h2>
+  <div class="certs-grid">
+    <div class="cert-card active reveal">
+      <div class="cert-status progress">⬤ &nbsp;In Progress</div>
+      <div class="cert-name">Cisco CCNA</div>
+      <div class="cert-desc">Cisco Certified Network Associate — covers networking fundamentals, IP services, security fundamentals, automation, and programmability. A globally recognised certification in networking.</div>
+    </div>
+    <div class="cert-card reveal reveal-delay-1">
+      <div class="cert-status done">✓ &nbsp;Completed</div>
+      <div class="cert-name">Hardware Repair &amp; Maintenance</div>
+      <div class="cert-desc">Comprehensive hands-on training in computer hardware diagnosis, repair, and preventive maintenance across various brands and form factors.</div>
+    </div>
+    <div class="cert-card reveal reveal-delay-2">
+      <div class="cert-status done">✓ &nbsp;Completed</div>
+      <div class="cert-name">Windows OS Administration</div>
+      <div class="cert-desc">Installation, configuration, and management of Windows environments including user account management, system optimisation, and troubleshooting.</div>
+    </div>
+    <div class="cert-card reveal reveal-delay-3">
+      <div class="cert-status done">✓ &nbsp;Completed</div>
+      <div class="cert-name">Network Setup &amp; Configuration</div>
+      <div class="cert-desc">Practical experience in LAN/WAN setup, router and switch configuration, IP addressing, and wireless network installation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <div class="section-label">Contact</div>
+      <h2>Let's work<br><em>together.</em></h2>
+      <p class="contact-desc">Looking for a reliable and experienced computer technician? I'm open to full-time roles, contract work, and technical support positions in Saudi Arabia.</p>
+      <div class="availability">Available for new opportunities</div>
+    </div>
+    <div class="contact-right reveal reveal-delay-1">
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:emonhasanasd@gmail.com">
+          <div class="contact-link-left">
+            <div class="contact-link-type">Email</div>
+            <div class="contact-link-value">emonhasanasd@gmail.com</div>
+          </div>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/emonhasan001" target="_blank">
+          <div class="contact-link-left">
+            <div class="contact-link-type">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/emonhasan001</div>
+          </div>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+        <a class="contact-link" href="#">
+          <div class="contact-link-left">
+            <div class="contact-link-type">Location</div>
+            <div class="contact-link-value">Riyadh, Saudi Arabia</div>
+          </div>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Rafaul Hasan Emon</div>
+  <div class="footer-copy">© 2025 · Computer Technician · Riyadh, KSA</div>
+</footer>
+
+<script>
+  const hwCard = document.querySelector('.hardware-card');
+  if (hwCard) {
+    const hwDefault = hwCard.querySelector('.hw-img-default');
+    const hwHover = hwCard.querySelector('.hw-img-hover');
+    hwCard.addEventListener('mouseenter', () => {
+      hwDefault.style.opacity = '0';
+      hwHover.style.opacity = '1';
+    });
+    hwCard.addEventListener('mouseleave', () => {
+      hwDefault.style.opacity = '1';
+      hwHover.style.opacity = '0';
+    });
+  }
+
+  const secCard = document.querySelector('.security-card');
+  if (secCard) {
+    const imgDefault = secCard.querySelector('.sec-img-default');
+    const imgHover = secCard.querySelector('.sec-img-hover');
+    secCard.addEventListener('mouseenter', () => {
+      imgDefault.style.opacity = '0';
+      imgHover.style.opacity = '1';
+    });
+    secCard.addEventListener('mouseleave', () => {
+      imgDefault.style.opacity = '1';
+      imgHover.style.opacity = '0';
+    });
+  }
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
